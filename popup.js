@@ -253,8 +253,10 @@ popup.init=function(){
 			$(document.body).append(popup.div);
 		}
 	});
-	popup.div.on('showed.bs.modal',function(){
-		$('body').css('padding-right',0);
+	popup.div.on('shown.bs.modal',function(){
+		if(!popup.st)return;
+		//modal окно сбрасывает фокус выставляя его на блок всего окна... бред какой-то... приходится использовать логику расширения autofocus чтобы и расширение работало и фокус если и ставился то на инпут с атрибутом autofocus
+		infrajs.autofocus('#'+popup.st.layer.div);
 	});
 	popup.div.on('hide.bs.modal',function(){
 		popup.div.removeClass('fade');//скрытие обычное иначе глюки с затемнением
