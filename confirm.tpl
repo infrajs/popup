@@ -11,7 +11,7 @@
 </div>
 <script>
 	infra.wait(infrajs,'onshow',function(){
-		var layer=infrajs.getUnickLayer('{unick}');
+		var layer=infrajs.getUnickLayer('{id}');
 		var div=$('#'+layer.div);
 		div.find('.popup-confirm-ok').click(function(){
 			layer.conf_ok();
