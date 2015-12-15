@@ -85,17 +85,17 @@ popup.text=function(obj){
 }
 popup.open=function(obj){//depricated??? Слой показывается с отступами от краёв, с кнопокй закрыть.
 	if(!obj)return;
-	var st=this.getStLayer(obj,obj,'*popup/open.tpl');
+	var st=this.getStLayer(obj,obj,'-popup/open.tpl');
 	popup.activate(st);
 }
 popup.alert=function(obj){
 	if(!obj)return;
-	var st=this.getStLayer(obj,{tpl:[obj]},'*popup/alert.tpl');
+	var st=this.getStLayer(obj,{tpl:[obj]},'-popup/alert.tpl');
 	popup.activate(st);
 }
 popup.success=function(obj){
 	if(!obj)return;
-	var st=this.getStLayer(obj,{tpl:[obj]},'*popup/success.tpl');
+	var st=this.getStLayer(obj,{tpl:[obj]},'-popup/success.tpl');
 	popup.activate(st);
 }
 popup.progress=function(val){
@@ -104,7 +104,7 @@ popup.progress=function(val){
 	if(!st.layer){
 		st.strict=true;
 		st.layer={
-			tpl:'*popup/progress.tpl',
+			tpl:'-popup/progress.tpl',
 			tplroot:'root'
 		}
 		infra.listen(st.layer,'onshow',function(layer){
@@ -132,12 +132,12 @@ popup.progress=function(val){
 }
 popup.error=function(obj){
 	if(!obj)return;
-	var st=this.getStLayer(obj,{tpl:[obj]},'*popup/error.tpl');
+	var st=this.getStLayer(obj,{tpl:[obj]},'-popup/error.tpl');
 	popup.activate(st);
 }
 popup.confirm=function(obj,callback){
 	if(!obj)return;
-	var st=this.getStLayer(obj,{tpl:[obj]},'*popup/confirm.tpl');
+	var st=this.getStLayer(obj,{tpl:[obj]},'-popup/confirm.tpl');
 	st.layer.conf_ok=callback;
 	popup.activate(st);
 }
@@ -245,7 +245,7 @@ popup.init=function(){
 	
 	$.ajax({
 		type: "GET",
-		url:infra.theme('*popup/popup.tpl'),
+		url:infra.theme('-popup/popup.tpl'),
 		async:false,
 		dataType:'html',
 		success:function(text){
