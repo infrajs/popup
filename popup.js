@@ -107,7 +107,7 @@ popup.progress=function(val){
 			tpl:'-popup/progress.tpl',
 			tplroot:'root'
 		}
-		infra.listen(st.layer,'onshow',function(layer){
+		Event.handler('layer.onshow', function (layer){
 			var bar=$('#'+layer.div).find('.progress-bar');
 			var set=function(){
 				if(!layer.showed)return;
@@ -124,7 +124,7 @@ popup.progress=function(val){
 				set();
 			},300);
 			set();
-		});
+		}, '', st.layer);
 	}
 	popup.activate(st);
 	if(!val)val=1;
