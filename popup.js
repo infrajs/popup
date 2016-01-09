@@ -305,9 +305,9 @@ infrajs.popup_memorize=function(code){
 	popup.div.on('hidden.bs.modal',function(){
 		infrajs.code_remove('popup',code);
 	});
-	//infra.when(popup.st.obj,'onhide',function(){
+	//Event.onext('layer.onhide',function(){
 		//infrajs.code_remove('popup',code);
-	//});
+	//},'',popup.st.obj);
 }
 popup.close=function(){//depricated
 	return this.hide.apply(this,arguments);
