@@ -4,6 +4,7 @@
 	"license": "GPL3",
 	"require":{
 		"twbs/bootstrap":"~3",
-		"infrajs/memcode":"~1"
+		"infrajs/memcode":"~1",
+		"infrajs/layer-autofocus":"~1"
 	}
 }
