@@ -274,6 +274,7 @@ popup.init=function(){
 			if(!popup.st)return;
 			if(popup.st.strict)return;
 			popup.hide();
+			e.preventDefault();
 		}
 	});
 }
