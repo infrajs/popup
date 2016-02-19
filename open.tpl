@@ -6,6 +6,6 @@
 
 		<span class="btn btn-default btn-xs" style="cursor:pointer" onclick="popup.hide()">закрыть окно</span>
 		
-		<span class="btn btn-default btn-xs" style="cursor:pointer" onclick="popup.hideAll()">закрыть все окна</span>
+		<span class="btn btn-default btn-xs" style="cursor:pointer" onclick="popup.hideAll()">X</span>
 	</div>
 </div>
