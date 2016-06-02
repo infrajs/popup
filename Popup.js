@@ -1,4 +1,5 @@
-popup={};
+window.Popup = {};
+popup = window.Popup;
 popup.stack=[];//все окна которые находятся в обработке. 
 popup.heap=[];//все когда либо показанные окна
 popup.st=false;//активное окно
