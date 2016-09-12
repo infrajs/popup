@@ -6,7 +6,7 @@
 	
 </div>
 <div class="modal-footer">
-	<button class="btn btn-default popup-confirm-ok" type="button" onclick="popup.close()">ОК</button>
+	<button class="btn btn-success popup-confirm-ok" type="button" onclick="popup.close()">ОК</button>
 	<button class="btn btn-default" type="button" onclick="popup.close()">Отмена</button>
 </div>
 <script>
