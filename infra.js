@@ -1,4 +1,4 @@
-Event.handler('layer.isshow', function (layer){
+Event.handler('Layer.isshow', function (layer){
 	do {
 		if (layer.popupis === false) return false;
 		layer = layer.parent;
@@ -6,7 +6,7 @@ Event.handler('layer.isshow', function (layer){
 },'popup');
 
 
-Event.handler('Infrajs.onshow', function () {
+Event.handler('Controller.onshow', function () {
 	//popup
 	if(!window.popup||!popup.st)return;
 	popup.render();

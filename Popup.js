@@ -108,7 +108,7 @@ popup.progress=function(val){
 			tpl:'-popup/progress.tpl',
 			tplroot:'root'
 		}
-		Event.handler('layer.onshow', function (layer){
+		Event.handler('Layer.onshow', function (layer){
 			var bar=$('#'+layer.div).find('.progress-bar');
 			var set=function(){
 				if(!layer.showed)return;
@@ -307,7 +307,7 @@ infrajs.popup_memorize=function(code){
 	popup.div.on('hidden.bs.modal',function(){
 		infrajs.code_remove('popup',code);
 	});
-	//Event.onext('layer.onhide',function(){
+	//Event.onext('Layer.onhide',function(){
 		//infrajs.code_remove('popup',code);
 	//},'',popup.st.obj);
 }
