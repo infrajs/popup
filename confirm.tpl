@@ -10,7 +10,7 @@
 	<button class="btn btn-default" type="button" onclick="popup.close()">Отмена</button>
 </div>
 <script>
-	Event.one('Infrajs.onshow', function(){
+	Event.one('Controller.onshow', function(){
 		var layer=infrajs.getUnickLayer('{id}');
 		var div=$('#'+layer.div);
 		div.find('.popup-confirm-ok').click(function(){
