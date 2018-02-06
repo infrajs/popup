@@ -1,7 +1,6 @@
 {
 	"name": "infrajs/popup",
 	"description": "Popup stack",
-	"license": "GPL3",
 	"require":{
 		"twbs/bootstrap":"~3",
 		"infrajs/memcode":"~1",
