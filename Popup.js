@@ -136,13 +136,13 @@ popup.error=function(obj){
 	var st=this.getStLayer(obj,{tpl:[obj]},'-popup/error.tpl');
 	popup.activate(st);
 }
-popup.confirm=function(obj,callback){
+popup.confirm=function(obj,callback, title){
 	if(!obj)return;
-	var st=this.getStLayer(obj,{tpl:[obj]},'-popup/confirm.tpl');
+	var st=this.getStLayer(obj,{tpl:[obj]},'-popup/confirm.tpl', title);
 	st.layer.conf_ok=callback;
 	popup.activate(st);
 }
-popup.getStLayer=function(obj,objtpl,tpl){
+popup.getStLayer=function(obj,objtpl,tpl, title){
 	var st=this.stackAdd(obj);
 	if(!st.layer){
 		var divid='stdivpopup'+st.counter;
@@ -150,6 +150,7 @@ popup.getStLayer=function(obj,objtpl,tpl){
 			tpl:tpl,
 			tplroot:'root',
 			conf_divid:divid,
+			conf_title:title || "Внимание",
 			divs:{}
 		}
 		st.layer.divs[divid]=objtpl;
