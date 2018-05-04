@@ -60,7 +60,10 @@ popup.stackDel=function(obj){
 
 
 popup.activate=function(st){
-	if(popup.st==st)return;
+	if (popup.st == st) {
+		//infrajs.autofocus(st.layer);
+		return;
+	}
 	var check=[];
 	if(popup.st){
 		popup.justhide(popup.st);
@@ -71,6 +74,7 @@ popup.activate=function(st){
 	popup.st=st;
 	infrajs.checkAdd(st.layer);
 	infrajs.check(check);
+	//infrajs.autofocus(st.layer);
 }
 popup.show=function(obj){
 	if(!obj)return;
@@ -136,10 +140,10 @@ popup.error=function(obj){
 	var st=this.getStLayer(obj,{tpl:[obj]},'-popup/error.tpl');
 	popup.activate(st);
 }
-popup.confirm=function(obj,callback, title){
+popup.confirm = function(obj,callback, title){
 	if(!obj)return;
-	var st=this.getStLayer(obj,{tpl:[obj]},'-popup/confirm.tpl', title);
-	st.layer.conf_ok=callback;
+	var st = this.getStLayer(obj,{ autofocus:true, tpl:[obj] },'-popup/confirm.tpl', title);
+	st.layer.conf_ok = callback;
 	popup.activate(st);
 }
 popup.getStLayer=function(obj,objtpl,tpl, title){
@@ -258,7 +262,7 @@ popup.init=function(){
 	popup.div.on('shown.bs.modal',function(){
 		if(!popup.st)return;
 		//modal окно сбрасывает фокус выставляя его на блок всего окна... бред какой-то... приходится использовать логику расширения autofocus чтобы и расширение работало и фокус если и ставился то на инпут с атрибутом autofocus
-		infrajs.autofocus('#'+popup.st.layer.div);
+		//infrajs.autofocus(popup.st.layer);
 	});
 	popup.div.on('hide.bs.modal',function(){
 		popup.div.removeClass('fade');//скрытие обычное иначе глюки с затемнением
