@@ -1,13 +1,15 @@
 <div class="modal-header">
-	<button class="close" type="button" onclick="Popup.close()">x</button>
-	<h4 class="modal-title" id="myModalLabel">{conf_title}</h4>
+	<h5 class="modal-title">{conf_title}</h5>
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
 </div>
 <div class="modal-body" id="{conf_divid}">
 	
 </div>
 <div class="modal-footer">
 	<button class="btn btn-success popup-confirm-ok" type="button">ОК</button>
-	<button class="btn btn-default" type="button" onclick="Popup.close()">Отмена</button>
+	<button class="btn btn-secondary" type="button" onclick="Popup.close()">Отмена</button>
 </div>
 <script>
 	Event.one('Controller.onshow', function(){
