@@ -5,8 +5,7 @@
 			<span aria-hidden="true">&times;</span>
 		</button>
 	</div>
-	<div class="modal-body bg-success" id="{conf_divid}">
-		
+	<div class="modal-body alert-success" id="{conf_divid}">
 	</div>
 	<div class="modal-footer">
 		<button class="btn btn-secondary" 

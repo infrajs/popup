@@ -4,8 +4,7 @@
 		<span aria-hidden="true">&times;</span>
 	</button>
 </div>
-<div class="modal-body bg-danger" id="{conf_divid}">
-	
+<div class="modal-body alert-danger" id="{conf_divid}">
 </div>
 <div class="modal-footer">
 	<button class="btn btn-default" type="button" onclick="Popup.close()">Закрыть</button>
