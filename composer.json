@@ -2,7 +2,6 @@
 	"name": "infrajs/popup",
 	"description": "Popup stack",
 	"require":{
-		"twbs/bootstrap":"~3",
 		"infrajs/memcode":"~1",
 		"infrajs/layer-autofocus":"~1"
 	}
