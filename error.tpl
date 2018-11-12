@@ -7,5 +7,5 @@
 <div class="modal-body alert-danger" id="{conf_divid}">
 </div>
 <div class="modal-footer">
-	<button class="btn btn-default" type="button" onclick="Popup.close()">Закрыть</button>
+	<button class="btn btn-secondary" type="button" onclick="Popup.close()">Закрыть</button>
 </div>
