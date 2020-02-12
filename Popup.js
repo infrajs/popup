@@ -59,7 +59,7 @@ popup.stackDel=function(obj){
 }
 
 
-popup.activate=function(st){
+popup.activate = st => {
 	if (popup.st == st) {
 		//infrajs.autofocus(st.layer);
 		return;
@@ -69,12 +69,14 @@ popup.activate=function(st){
 		popup.justhide(popup.st);
 		check.push(popup.st.layer);
 	}
-	popup.justshow(st);
-	check.push(st.layer)
-	popup.st=st;
-	infrajs.checkAdd(st.layer);
-	infrajs.check(check);
-	//infrajs.autofocus(st.layer);
+	return (async () => {
+		await popup.justshow(st);
+		check.push(st.layer)
+		popup.st=st;
+		infrajs.checkAdd(st.layer);
+		infrajs.check(check);
+		//infrajs.autofocus(st.layer);
+	})();
 }
 popup.show=function(obj){
 	if(!obj)return;
@@ -162,7 +164,7 @@ popup.getStLayer=function(obj,objtpl,tpl, title){
 	return st;
 };
 
-popup.hide=function(obj){
+popup.hide = function(obj){
 	if(!obj&&popup.st)obj=popup.st.obj;
 	if(!obj)return;
 	var st=popup.stackDel(obj);
@@ -185,12 +187,11 @@ popup.toggle=function(obj){//Если окно
 	else return this.hide(obj); 
 }
 
-
 popup.justhide=function(st){
 	st.layer.popupis=false;
 	if(!popup.st)popup.div.modal('hide');
 }
-popup.justshow=function(st){
+popup.justshow = st => {
 	popup.init();
 	var cont=popup.div.find('#popup_content');
 	var divid='popupinst'+st.counter;
@@ -210,9 +211,12 @@ popup.justshow=function(st){
 	}
 	
 	//popup.refreshBackdrop(opt);
-	
-	
-	popup.div.modal(opt);//Нужно запускать постоянно так как она может быть скрыто средствами bootstrap modal
+	return (async () => {
+		let Load = (await import('/vendor/akiyatkin/load/Load.js')).default; 
+		Load.cdncss('bootstrap','//stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
+		await Load.cdnjs('bootstrap','//stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js');
+		popup.div.modal(opt);//Нужно запускать постоянно так как она может быть скрыто средствами bootstrap modal
+	})();
 }
 popup.render=function(){
 	//Подтягиваем фон согласно размера окна
