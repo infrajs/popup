@@ -213,8 +213,9 @@ popup.justshow = st => {
 	//popup.refreshBackdrop(opt);
 	return (async () => {
 		let Load = (await import('/vendor/akiyatkin/load/Load.js')).default; 
-		Load.cdncss('bootstrap','//stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
-		await Load.cdnjs('bootstrap','//stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js');
+		let CDN = await Load.on('import-default', '/vendor/akiyatkin/load/CDN.js')
+		CDN.css('bootstrap','//stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
+		await CDN.js('bootstrap','//stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js');
 		popup.div.modal(opt);//Нужно запускать постоянно так как она может быть скрыто средствами bootstrap modal
 	})();
 }
