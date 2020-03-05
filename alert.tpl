@@ -7,6 +7,16 @@
 <div class="modal-body bg-warning" id="{conf_divid}">
 	
 </div>
+<script async type="module">
+	(async () => {
+		let Load = (await import('/vendor/akiyatkin/load/Load.js')).default
+		let CDN = await Load.on('import-default', '/vendor/akiyatkin/load/CDN.js')
+		await CDN.load('jquery')
+		$('#{div}').find('a').click(e => {
+			Popup.close()
+		})
+	})()
+</script>
 <div class="modal-footer">
 	<!--data-dismiss="modal"-->
 	<button class="btn btn-secondary" 
