@@ -222,7 +222,7 @@ popup.justshow = st => {
 popup.render=function(){
 	//Подтягиваем фон согласно размера окна
 	//popup.div.data('bs.modal').adjustBackdrop();
-	if (popup.div.data('bs.modal').adjustDialog) popup.div.data('bs.modal').adjustDialog();
+	if (popup.div.data && popup.div.data('bs.modal').adjustDialog) popup.div.data('bs.modal').adjustDialog();
 }
 popup.refreshBackdrop=function(opt){
 	var mod=popup.div.data('bs.modal');
@@ -324,3 +324,4 @@ infrajs.popup_memorize=function(code){
 popup.close=function(){//depricated
 	return this.hide.apply(this,arguments);
 }
+export default Popup

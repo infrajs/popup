@@ -1,4 +1,4 @@
 {
-	"js":["Popup.js","infra.js"],
+	"js":["infra.js"],
 	"dependencies":["event"]
 }
