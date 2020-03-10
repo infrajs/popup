@@ -1,4 +1,4 @@
-<div style="padding:20px; padding-bottom:5px;" onclick="Popup.close()">
+<div style="padding:20px; padding-bottom:5px;">
 	<button style="margin-top: -15px; margin-right: -11px;" type="button" class="close" data-dismiss="modal" aria-label="Close">
 		<span aria-hidden="true">&times;</span>
 	</button>
