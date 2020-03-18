@@ -217,9 +217,11 @@ popup.justshow = st => {
 		popup.div.modal(opt);//Нужно запускать постоянно так как она может быть скрыто средствами bootstrap modal
 	})();
 }
-popup.render = function () {
+popup.render = async () => {
 	//Подтягиваем фон согласно размера окна
 	//popup.div.data('bs.modal').adjustBackdrop();
+	let CDN = (await import('/vendor/akiyatkin/load/CDN.js')).default
+	await CDN.load('bootstrap')
 	if (popup.div.data && popup.div.data('bs.modal').adjustDialog) popup.div.data('bs.modal').adjustDialog();
 }
 popup.refreshBackdrop=function(opt){
@@ -305,7 +307,7 @@ popup.isShow=function(){
 popup.closeAll=function(){//depricated
 	return this.hideAll();
 }
-popup.center=function(){//depricated
+popup.center = function(){//depricated
 	popup.render();
 }
 
