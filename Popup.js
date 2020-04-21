@@ -222,7 +222,7 @@ popup.render = async () => {
 	//popup.div.data('bs.modal').adjustBackdrop();
 	let CDN = (await import('/vendor/akiyatkin/load/CDN.js')).default
 	await CDN.load('bootstrap')
-	if (popup.div.data && popup.div.data('bs.modal').adjustDialog) popup.div.data('bs.modal').adjustDialog();
+	if (popup.div.data && popup.div.data('bs.modal') && popup.div.data('bs.modal').adjustDialog) popup.div.data('bs.modal').adjustDialog();
 }
 popup.refreshBackdrop=function(opt){
 	var mod=popup.div.data('bs.modal');
