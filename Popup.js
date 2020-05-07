@@ -1,4 +1,5 @@
-window.Popup = {};
+let Popup = {};
+window.Popup = Popup;
 window.popup = window.Popup;
 popup.stack=[];//все окна которые находятся в обработке. 
 popup.heap=[];//все когда либо показанные окна
@@ -324,4 +325,5 @@ infrajs.popup_memorize=function(code){
 popup.close=function(){//depricated
 	return this.hide.apply(this,arguments);
 }
+export {Popup}
 export default Popup
