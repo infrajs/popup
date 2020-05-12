@@ -1,3 +1,4 @@
+import { Event } from '/vendor/infrajs/event/Event.js'
 Event.one('Controller.onshow', function(){
 	var test=infra.test;
 	

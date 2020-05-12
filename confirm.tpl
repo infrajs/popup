@@ -11,9 +11,12 @@
 	<button class="btn btn-success popup-confirm-ok" type="button">ОК</button>
 	<button class="btn btn-secondary" type="button" onclick="Popup.close()">Отмена</button>
 </div>
-<script>
+<script async type="module">
+	import { Event } from '/vendor/infrajs/event/Event.js'
+	import { Controller } from '/vendor/infrajs/controller/src/Controller.js'
+	import { Popup } from '/vendor/infrajs/popup/Popup.js'
 	Event.one('Controller.onshow', function(){
-		var layer = Controller.getUnickLayer('{id}');
+		var layer = Controller.ids('{id}');
 		var div = $('#' + layer.div);
 		div.find('.popup-confirm-ok').click( function () {
 			layer.conf_ok(div);

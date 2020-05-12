@@ -1,3 +1,6 @@
+import { Path } from '/vendor/infrajs/path/Path.js'
+import { Event } from '/vendor/infrajs/event/Event.js'
+
 let Popup = {};
 window.Popup = Popup;
 window.popup = window.Popup;
@@ -257,7 +260,7 @@ popup.init = function () {
 
 	$.ajax({
 		type: "GET",
-		url: infra.theme('-popup/popup.tpl'),
+		url: Path.theme('-popup/popup.tpl'),
 		async: false,
 		dataType: 'html',
 		success: function (text) {
