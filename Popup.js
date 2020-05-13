@@ -1,6 +1,7 @@
 import { Path } from '/vendor/infrajs/path/Path.js'
 import { Event } from '/vendor/infrajs/event/Event.js'
 import { CDN } from '/vendor/akiyatkin/load/CDN.js'
+import { Code } from '/vendor/infrajs/memcode/Code.js'
 
 let Popup = {};
 let popup = Popup;
@@ -8,6 +9,18 @@ Popup.stack = [];//все окна которые находятся в обра
 Popup.heap = [];//все когда либо показанные окна
 Popup.st = false;//активное окно
 Popup.counter = 0;
+
+Popup.memorize = async code => {
+	if (!Popup.st) return;
+	await CDN.load('bootstrap')
+	Code.save('popup', code);
+	Popup.div.on('hidden.bs.modal', function () {
+		Code.remove('popup', code);
+	});
+	//Event.onext('Layer.onhide',function(){
+	//Code.remove('popup',code);
+	//},'',popup.st.obj);
+}
 
 Popup.stackAdd = function (obj) {
 	var st = false;
