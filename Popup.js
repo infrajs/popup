@@ -25,7 +25,7 @@ Popup.stackAdd = function (obj) {
 			}
 		}
 	}
-	if (!st) st = { counter: ++this.counter, obj: obj };
+	if (!st) st = { counter: ++Popup.counter, obj: obj };
 	Popup.stack.push(st);
 	return st;
 }
@@ -166,7 +166,7 @@ Popup.getStLayer = function (obj, objtpl, tpl, title) {
 	return st;
 };
 
-Popup.hide = function (obj) {
+Popup.hide = async function (obj) {
 	if (!obj && Popup.st) obj = Popup.st.obj;
 	if (!obj) return;
 	var st = Popup.stackDel(obj);
@@ -178,22 +178,22 @@ Popup.hide = function (obj) {
 	Popup.justhide(st);
 	check.push(st.layer);
 	if (next) {
-		Popup.justshow(next);
+		await Popup.justshow(next);
 		check.push(next.layer);
 	}
-	Controller.check(check);
+	await Controller.check(check);
 }
 Popup.toggle = function (obj) {//Если окно
 	var st = Popup.stackGet(obj);
-	if (!st || this.st !== st) return this.open(obj);
-	else return this.hide(obj);
+	if (!st || Popup.st !== st) return Popup.open(obj);
+	else return Popup.hide(obj);
 }
 
 Popup.justhide = function (st) {
 	st.layer.popupis = false;
 	if (!Popup.st) Popup.div.modal('hide');
 }
-Popup.justshow = st => {
+Popup.justshow = async st => {
 	Popup.init();
 	var cont = Popup.div.find('#popup_content');
 	var divid = 'popupinst' + st.counter;
@@ -212,12 +212,9 @@ Popup.justshow = st => {
 		opt.backdrop = true;
 	}
 
-	//Popup.refreshBackdrop(opt);
-	return (async () => {
-		let CDN = (await import('/vendor/akiyatkin/load/CDN.js')).default
-		await CDN.load('bootstrap')
-		Popup.div.modal(opt);//Нужно запускать постоянно так как она может быть скрыто средствами bootstrap modal
-	})();
+	//Popup.refreshBackdrop(opt);	
+	await CDN.load('bootstrap')
+	Popup.div.modal(opt);//Нужно запускать постоянно так как она может быть скрыто средствами bootstrap modal
 }
 Popup.render = async () => {
 	//Подтягиваем фон согласно размера окна
@@ -248,12 +245,12 @@ Popup.refreshBackdrop = function (opt) {
 }
 
 Popup.getLayer = function () {
-	if (!this.st) return;
-	return this.st.layer;
+	if (!Popup.st) return;
+	return Popup.st.layer;
 },
 	Popup.div = false;//Здесь хранится jquery объект окна
 Popup.init = function () {
-	this.init = function () { };
+	Popup.init = function () { };
 
 	$.ajax({
 		type: "GET",
@@ -273,19 +270,19 @@ Popup.init = function () {
 	Popup.div.on('hide.bs.modal', function () {
 		Popup.div.removeClass('fade');//скрытие обычное иначе глюки с затемнением
 	});
-	Popup.div.on('hidden.bs.modal', function () {
+	Popup.div.on('hidden.bs.modal', async () => {
 		Popup.div.addClass('fade');
 		if (Popup.st) {//Есть активное окно значит close не был вызван
-			Popup.hide();
+			await Popup.hide();
 		} else {
 
 		}
 	});
-	$('body').on('keydown', function (e) {
+	$('body').on('keydown', async (e) => {
 		if (e.which == 27) {
 			if (!Popup.st) return;
 			if (Popup.st.strict) return;
-			Popup.hide();
+			await Popup.hide();
 			e.preventDefault();
 		}
 	});
@@ -294,26 +291,26 @@ Popup.init = function () {
 
 
 
-Popup.hideAll = function () { //Закрываем все окна в стеке
+Popup.hideAll = async () => { //Закрываем все окна в стеке
 	if (!Popup.st) return;
 	var st = Popup.st;
 	Popup.st = false;
 	Popup.stackClear();
 	Popup.justhide(st);
-	Controller.check(st.layer);
+	await Controller.check(st.layer);
 }
 Popup.isShow = function () {
-	return !!this.st;
+	return !!Popup.st;
 }
 Popup.closeAll = function () {//depricated
-	return this.hideAll();
+	return Popup.hideAll();
 }
 Popup.center = function () {//depricated
 	Popup.render();
 }
 
 Popup.close = function () {//depricated
-	return this.hide.apply(this, arguments);
+	return Popup.hide.apply(this, arguments);
 }
 
 window.Popup = Popup;
