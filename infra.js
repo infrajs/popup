@@ -4,6 +4,7 @@ import { Controller } from '/vendor/infrajs/controller/src/Controller.js'
 import { Code } from '/vendor/infrajs/memcode/Code.js'
 
 Event.handler('Layer.isshow', function (layer) {
+
 	do {
 		if (layer.popupis === false) return false;
 		layer = layer.parent;
