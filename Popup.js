@@ -254,7 +254,7 @@ Popup.init = function () {
 
 	$.ajax({
 		type: "GET",
-		url: Path.theme('-popup/Popup.tpl'),
+		url: Path.theme('-popup/popup.tpl'),
 		async: false,
 		dataType: 'html',
 		success: function (text) {
