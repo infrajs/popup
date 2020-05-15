@@ -11,7 +11,7 @@
 	<button class="btn btn-success popup-confirm-ok" type="button">ОК</button>
 	<button class="btn btn-secondary" type="button" onclick="Popup.close()">Отмена</button>
 </div>
-<script async type="module">
+<script type="module">
 	import { Event } from '/vendor/infrajs/event/Event.js'
 	import { Controller } from '/vendor/infrajs/controller/src/Controller.js'
 	import { Popup } from '/vendor/infrajs/popup/Popup.js'

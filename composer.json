@@ -3,6 +3,6 @@
 	"description": "Popup stack",
 	"require":{
 		"infrajs/memcode":"~1",
-		"infrajs/layer-autofocus":"~1"
+		"akiyatkin/form":"~1"
 	}
 }

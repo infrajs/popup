@@ -7,7 +7,7 @@
 <div class="modal-body bg-warning" id="{conf_divid}">
 	
 </div>
-<script async type="module">
+<script type="module">
 	(async () => {
 		let CDN = (await import('/vendor/akiyatkin/load/CDN.js')).default
 		await CDN.load('jquery')
