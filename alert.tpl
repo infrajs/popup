@@ -8,9 +8,9 @@
 	
 </div>
 <script type="module">
+	import { CDN } from '/vendor/akiyatkin/load/CDN.js'
 	(async () => {
-		let CDN = (await import('/vendor/akiyatkin/load/CDN.js')).default
-		await CDN.load('jquery')
+		await CDN.on('load','jquery')
 		$('#{div}').find('a').click(e => {
 			Popup.close()
 		})
