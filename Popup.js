@@ -12,7 +12,7 @@ Popup.counter = 0;
 
 Popup.memorize = async code => {
 	if (!Popup.st) return;
-	await CDN.load('bootstrap')
+	await CDN.on('load','bootstrap')
 	Code.save('popup', code);
 	Popup.div.on('hidden.bs.modal', function () {
 		Code.remove('popup', code);
@@ -226,13 +226,13 @@ Popup.justshow = async st => {
 	}
 
 	//Popup.refreshBackdrop(opt);	
-	await CDN.load('bootstrap')
+	await CDN.on('load','bootstrap')
 	Popup.div.modal(opt);//Нужно запускать постоянно так как она может быть скрыто средствами bootstrap modal
 }
 Popup.render = async () => {
 	//Подтягиваем фон согласно размера окна
 	//Popup.div.data('bs.modal').adjustBackdrop();
-	await CDN.load('bootstrap')
+	await CDN.on('load','bootstrap')
 	if (Popup.div.data && Popup.div.data('bs.modal') && Popup.div.data('bs.modal').adjustDialog) Popup.div.data('bs.modal').adjustDialog();
 }
 Popup.refreshBackdrop = function (opt) {
