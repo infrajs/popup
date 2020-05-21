@@ -13,16 +13,18 @@
 </div>
 <script type="module">
 	import { Event } from '/vendor/infrajs/event/Event.js'
-	import { Controller } from '/vendor/infrajs/controller/src/Controller.js'
+	import { Layer } from '/vendor/infrajs/controller/src/Layer.js'
 	import { Popup } from '/vendor/infrajs/popup/Popup.js'
 	
 	//popup confirm не может показаться без контроллера
-	let layer = Controller.ids[{id}];
-	let div = document.getElementById('{div}')
-	let cls = cls => div.getElementsByClassName(cls)
-	cls('popup-confirm-ok')[0].addEventListener('click', async () => {
-		await layer.conf_ok(div);
-		Popup.close();
+	Layer.get({id}).then(layer => {
+		let div = document.getElementById('{div}')
+		let cls = cls => div.getElementsByClassName(cls)
+		cls('popup-confirm-ok')[0].addEventListener('click', async () => {
+			await layer.conf_ok(div);
+			Popup.close();
+		})
 	})
+	
 	
 </script>
