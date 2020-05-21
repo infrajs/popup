@@ -15,12 +15,14 @@
 	import { Event } from '/vendor/infrajs/event/Event.js'
 	import { Controller } from '/vendor/infrajs/controller/src/Controller.js'
 	import { Popup } from '/vendor/infrajs/popup/Popup.js'
-	Event.one('Controller.onshow', function(){
-		var layer = Controller.ids('{id}');
-		var div = $('#' + layer.div);
-		div.find('.popup-confirm-ok').click( function () {
-			layer.conf_ok(div);
-			Popup.close();
-		});
+	
+	//popup confirm не может показаться без контроллера
+	let layer = Controller.ids[{id}];
+	let div = document.getElementById('{div}')
+	let cls = cls => div.getElementsByClassName(cls)
+	cls('popup-confirm-ok')[0].addEventListener('click', async () => {
+		await layer.conf_ok(div);
+		Popup.close();
 	})
+	
 </script>
