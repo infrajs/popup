@@ -81,6 +81,7 @@ Popup.activate = async st => {
 		//Controller.autofocus(st.layer);
 		return;
 	}
+	let Controller = (await import('/vendor/infrajs/controller/src/Controller.js')).Controller
 	var check = [];
 	if (Popup.st) {
 		Popup.justhide(Popup.st);
@@ -89,8 +90,11 @@ Popup.activate = async st => {
 	await Popup.justshow(st);
 	check.push(st.layer)
 	Popup.st = st;
-	Controller.checkAdd(st.layer);
-	Controller.check(check);
+	//await Controller.check();
+	await Controller.checkAdd(st.layer);
+	//await Controller.check(check);
+	await DOM.emit('check')
+	//await Controller.check();
 	
 }
 Popup.show = async (obj) => {
@@ -194,7 +198,9 @@ Popup.hide = async function (obj) {
 		await Popup.justshow(next);
 		check.push(next.layer);
 	}
-	await Controller.check(check);
+	//let Controller = (await import('/vendor/infrajs/controller/src/Controller.js')).Controller
+	DOM.emit('check')
+	//await Controller.check(check);
 }
 Popup.toggle = function (obj) {//Если окно
 	var st = Popup.stackGet(obj);
@@ -310,7 +316,9 @@ Popup.hideAll = async () => { //Закрываем все окна в стеке
 	Popup.st = false;
 	Popup.stackClear();
 	Popup.justhide(st);
-	await Controller.check(st.layer);
+	//let Controller = (await import('/vendor/infrajs/controller/src/Controller.js')).Controller
+	//await Controller.check(st.layer);
+	await DOM.emit('check')
 }
 Popup.isShow = function () {
 	return !!Popup.st;
