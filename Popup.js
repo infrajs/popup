@@ -4,15 +4,14 @@ import { CDN } from '/vendor/akiyatkin/load/CDN.js'
 import { Code } from '/vendor/infrajs/memcode/Code.js'
 
 let Popup = {};
-let popup = Popup;
 Popup.stack = [];//все окна которые находятся в обработке. 
 Popup.heap = [];//все когда либо показанные окна
 Popup.st = false;//активное окно
 Popup.counter = 0;
 
 Popup.memorize = async code => {
-	if (!Popup.st) return;
-	await CDN.on('load','bootstrap')
+	//if (!Popup.st) return;
+	await CDN.fire('load','bootstrap')
 	Code.save('popup', code);
 	Popup.div.on('hidden.bs.modal', function () {
 		Code.remove('popup', code);
