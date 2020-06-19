@@ -2,7 +2,8 @@ import { Path } from '/vendor/infrajs/path/Path.js'
 import { Event } from '/vendor/infrajs/event/Event.js'
 import { CDN } from '/vendor/akiyatkin/load/CDN.js'
 import { Code } from '/vendor/infrajs/memcode/Code.js'
-
+import { Load } from '/vendor/akiyatkin/load/Load.js'
+import { createPromise } from '/vendor/akiyatkin/load/Fire.js'
 let Popup = {};
 Popup.stack = [];//все окна которые находятся в обработке. 
 Popup.heap = [];//все когда либо показанные окна
@@ -12,6 +13,7 @@ Popup.counter = 0;
 Popup.memorize = async code => {
 	//if (!Popup.st) return;
 	await CDN.fire('load','bootstrap')
+	await Popup.init()
 	Code.save('popup', code);
 	Popup.div.on('hidden.bs.modal', function () {
 		Code.remove('popup', code);
@@ -212,7 +214,7 @@ Popup.justhide = function (st) {
 	if (!Popup.st) Popup.div.modal('hide');
 }
 Popup.justshow = async st => {
-	Popup.init();
+	await Popup.init();
 	var cont = Popup.div.find('#popup_content');
 	var divid = 'popupinst' + st.counter;
 	var place = cont.find('#' + divid);
@@ -266,20 +268,17 @@ Popup.getLayer = function () {
 	if (!Popup.st) return;
 	return Popup.st.layer;
 },
-	Popup.div = false;//Здесь хранится jquery объект окна
-Popup.init = function () {
-	Popup.init = function () { };
+Popup.div = false;//Здесь хранится jquery объект окна
 
-	$.ajax({
-		type: "GET",
-		url: Path.theme('-popup/popup.tpl'),
-		async: false,
-		dataType: 'html',
-		success: function (text) {
-			Popup.div = $(text);
-			$(document.body).append(Popup.div);
-		}
-	});
+Popup.init = async () => {
+	let promise = createPromise()
+	Popup.init = function () { return promise }
+	
+	let text = await Load.fire('text', '-popup/popup.tpl')
+
+	Popup.div = $(text);
+	$(document.body).append(Popup.div);
+	
 	Popup.div.on('shown.bs.modal', function () {
 		if (!Popup.st) return;
 		//modal окно сбрасывает фокус выставляя его на блок всего окна... бред какой-то... приходится использовать логику расширения autofocus чтобы и расширение работало и фокус если и ставился то на инпут с атрибутом autofocus
@@ -304,6 +303,8 @@ Popup.init = function () {
 			e.preventDefault();
 		}
 	});
+	promise.resolve()
+	return promise
 }
 
 
