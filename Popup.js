@@ -94,7 +94,7 @@ Popup.activate = async st => {
 	//await Controller.check();
 	await Controller.checkAdd(st.layer);
 	//await Controller.check(check);
-	await DOM.emit('check')
+	await DOM.puff('check')
 	//await Controller.check();
 	
 }
@@ -200,7 +200,7 @@ Popup.hide = async function (obj) {
 		check.push(next.layer);
 	}
 	//let Controller = (await import('/vendor/infrajs/controller/src/Controller.js')).Controller
-	DOM.emit('check')
+	DOM.puff('check')
 	//await Controller.check(check);
 }
 Popup.toggle = function (obj) {//Если окно
@@ -318,7 +318,7 @@ Popup.hideAll = async () => { //Закрываем все окна в стеке
 	Popup.justhide(st);
 	//let Controller = (await import('/vendor/infrajs/controller/src/Controller.js')).Controller
 	//await Controller.check(st.layer);
-	await DOM.emit('check')
+	await DOM.puff('check')
 }
 Popup.isShow = function () {
 	return !!Popup.st;
