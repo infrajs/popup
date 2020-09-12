@@ -98,6 +98,13 @@ Popup.activate = async st => {
 	//await Controller.check();
 	
 }
+Popup.showbig = async (obj) => {
+	if (!obj) return;
+	var st = Popup.stackAdd(obj);
+	st.layer = obj;
+	st.big = true;
+	await Popup.activate(st);
+}
 Popup.show = async (obj) => {
 	if (!obj) return;
 	var st = Popup.stackAdd(obj);
@@ -210,11 +217,17 @@ Popup.toggle = function (obj) {//Если окно
 }
 
 Popup.justhide = function (st) {
+
 	st.layer.popupis = false;
 	if (!Popup.st) Popup.div.modal('hide');
 }
 Popup.justshow = async st => {
 	await Popup.init();
+	if (st.big) {
+		document.getElementsByClassName('modal-dialog')[0].classList.add('modal-lg')
+	} else {
+		document.getElementsByClassName('modal-dialog')[0].classList.remove('modal-lg')
+	}
 	var cont = Popup.div.find('#popup_content');
 	var divid = 'popupinst' + st.counter;
 	var place = cont.find('#' + divid);
@@ -279,13 +292,16 @@ Popup.init = async () => {
 	Popup.div = $(text);
 	$(document.body).append(Popup.div);
 	
+	
+
 	Popup.div.on('shown.bs.modal', function () {
-		if (!Popup.st) return;
+		if (!Popup.st) return;	
 		//modal окно сбрасывает фокус выставляя его на блок всего окна... бред какой-то... приходится использовать логику расширения autofocus чтобы и расширение работало и фокус если и ставился то на инпут с атрибутом autofocus
 		//Controller.autofocus(Popup.st.layer);
 	});
 	Popup.div.on('hide.bs.modal', function () {
 		Popup.div.removeClass('fade');//скрытие обычное иначе глюки с затемнением
+		
 	});
 	Popup.div.on('hidden.bs.modal', async () => {
 		Popup.div.addClass('fade');
