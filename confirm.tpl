@@ -20,8 +20,8 @@
 	Layer.get({id}).then(layer => {
 		let div = document.getElementById('{div}')
 		let cls = cls => div.getElementsByClassName(cls)
-		cls('popup-confirm-ok')[0].addEventListener('click', async () => {
-			await layer.conf_ok(div);
+		cls('popup-confirm-ok')[0].addEventListener('click', () => {
+			layer.conf_ok(div);
 			Popup.close();
 		})
 	})
