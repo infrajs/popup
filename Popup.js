@@ -290,6 +290,8 @@ Popup.init = async () => {
 	
 	let text = await Load.fire('text', '-popup/popup.tpl')
 
+	await CDN.fire('load','bootstrap')
+	
 	Popup.div = $(text);
 	$(document.body).append(Popup.div);
 	
