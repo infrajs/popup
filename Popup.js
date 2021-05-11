@@ -124,12 +124,12 @@ Popup.open = function (obj) {//depricated??? Слой показывается �
 }
 Popup.alert = async (obj) => {
 	if (!obj) return;
-	var st = Popup.getStLayer(obj, { tpl: [obj] }, '-popup/alert.tpl');
+	var st = Popup.getStLayer(obj+'alert', { tpl: [obj] }, '-popup/alert.tpl');
 	await Popup.activate(st);
 }
 Popup.success = function (obj) {
 	if (!obj) return;
-	var st = Popup.getStLayer(obj, { tpl: [obj] }, '-popup/success.tpl');
+	var st = Popup.getStLayer(obj+'success', { tpl: [obj] }, '-popup/success.tpl');
 	Popup.activate(st);
 }
 Popup.progress = function (val) {
@@ -166,7 +166,7 @@ Popup.progress = function (val) {
 }
 Popup.error = function (obj) {
 	if (!obj) return;
-	var st = Popup.getStLayer(obj, { tpl: [obj] }, '-popup/error.tpl');
+	var st = Popup.getStLayer(obj+'error', { tpl: [obj] }, '-popup/error.tpl');
 	Popup.activate(st);
 }
 Popup.confirm = function (obj, callback, title) {
