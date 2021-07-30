@@ -11,7 +11,7 @@ Popup.counter = 0;
 
 Popup.memorize = async code => {
 	//if (!Popup.st) return;
-	const { Code } await import('/vendor/infrajs/memcode/Code.js')
+	const { Code } = await import('/vendor/infrajs/memcode/Code.js');
 	await CDN.fire('load','bootstrap')
 	await Popup.init()
 	Code.save('popup', code);
