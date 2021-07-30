@@ -1,7 +1,6 @@
 import { Path } from '/vendor/infrajs/path/Path.js'
 import { Event } from '/vendor/infrajs/event/Event.js'
 import { CDN } from '/vendor/akiyatkin/load/CDN.js'
-import { Code } from '/vendor/infrajs/memcode/Code.js'
 import { Load } from '/vendor/akiyatkin/load/Load.js'
 import { createPromise } from '/vendor/akiyatkin/load/Fire.js'
 let Popup = {};
@@ -12,6 +11,7 @@ Popup.counter = 0;
 
 Popup.memorize = async code => {
 	//if (!Popup.st) return;
+	const { Code } await import('/vendor/infrajs/memcode/Code.js')
 	await CDN.fire('load','bootstrap')
 	await Popup.init()
 	Code.save('popup', code);
