@@ -1,6 +1,6 @@
 <div>
 	<div class="modal-header">
-		<h5 class="modal-title">{Lang.name()=:ru?:Успех?:Success}!</h5>
+		<h5 class="modal-title">{Lang.name()=:en?:Success?:Успех}!</h5>
 		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
@@ -11,6 +11,6 @@
 		<button class="btn btn-secondary" 
 			type="button"
 			onclick="Popup.close()"
-			>{Lang.name()=:ru?:Закрыть?:Close}</button>
+			>{Lang.name()=:en?:Close?:Закрыть}</button>
 	</div>
 </div>
